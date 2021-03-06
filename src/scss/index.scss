@@ -1,0 +1,130 @@
+@import url("~reset.css");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+* {
+  font-family: "Roboto", sans-serif !important;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 130%;
+}
+$white: #fff;
+$black: #000;
+$primary: rgb(54, 202, 74);
+$light: #e5e5e5;
+
+.wrapper {
+  max-width: 915px;
+  margin: 0 auto;
+}
+
+#determinant {
+  margin-top: 80px;
+}
+.display_image {
+  #draw_picture {
+    height: 420px;
+  }
+}
+.content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.btn_shell {
+  display: flex;
+}
+.btn {
+  font-weight: 800;
+  color: $primary;
+  background-color: $white;
+  border-radius: 0;
+  padding: 5px 15px 5px 15px;
+  border-radius: 5px;
+  border: 2px solid $primary;
+  outline: none;
+  margin-right: 20px;
+  transition: 0.2s;
+  &:hover {
+    cursor: pointer;
+    color: $black;
+  }
+  &:active {
+    color: $white;
+  }
+}
+
+#draw_picture {
+  max-width: 420px;
+  max-height: 420px;
+  border: $black 1px solid;
+  border-radius: 5px;
+  margin-bottom: 40px;
+  background-color: $white;
+}
+
+.info {
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
+  margin-bottom: 40px;
+  h1 {
+    font-weight: 800;
+    font-size: 36px;
+  }
+}
+
+.bar_shell {
+  display: flex;
+  flex-direction: column;
+  &__bar {
+    display: flex;
+    margin-bottom: 10px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    p {
+      padding-top: 2px;
+    }
+  }
+}
+
+.progress {
+  height: 25px;
+  width: 100%;
+  background-color: $light;
+  margin-left: 15px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  &__value {
+    height: inherit;
+    border-radius: inherit;
+    width: 0%;
+  }
+  p {
+    font-weight: 800;
+    color: $white;
+    position: absolute;
+    padding-top: 1px;
+    margin-left: 5px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .wrapper {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 950px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+} ;
