@@ -23,10 +23,16 @@ upload({
   extensions: [".jpeg", ".jpg", ".png", ".JPEG", ".JPG", ".PNG"],
 });
 
-canvas.canv.addEventListener("mouseup", async () => {
+async function showPredictions(canvas, model) {
   const imagePixelsData = canvas.getImagePixelsData();
   const preds = await model.getPredictions(imagePixelsData);
   canvas.setProgressValues(preds);
+}
+canvas.canv.addEventListener("mouseup", () => {
+  showPredictions(canvas, model);
+});
+canvas.cleanButton.addEventListener("click", () => {
+  showPredictions(canvas, model);
 });
 
 document.oncontextmenu = () => {

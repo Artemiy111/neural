@@ -8,18 +8,25 @@
 	<title>Neural Network</title>
 </head>
 <body>
-	<section id=determinant class='wrapper'>
+
+	<section class="wrapper">
+		<div class="banner">
+			<h1 class='banner__title'>Определение чисел по изображению</h1>
+			<img class='banner__image' src="./assets/banner1.jpg" alt="">
+		</div>
+	</section>
+
+	<section id=root class='wrapper'>
 			<div class="content">
 				<div class="display_image">
 					<canvas id='draw_picture'></canvas>
-					<div class="btn_shell">
-						<input type="file" name="" id="file">
-						<button class="btn" id='clean'>Стереть всё</button>
+					<div class="annotation">
+						<p>ЛКМ &#8211; Кисть&#160;&#160;&#160;&#160;ПКМ &#8211; Ластик</p>
+						<p>Исходники:&#160;&#160;<a href="https://github.com/Artemiy111/project_neural_network">Проект на Github</a></p>
+						
 					</div>
 				</div>
 				<div class="info">
-					<h1>Определение по фото</h1>
-					<p>ЛКМ - Кисть, ПКМ - Ластик</p>
 					<div class="bar_shell">
 						<div class="bar_shell__bar">
 							<p>0</p>
@@ -91,6 +98,10 @@
 								<div class="progress__value"></div>
 							</div>
 						</div>
+					</div>
+					<div class="btn_shell">
+						<input type="file" name="" id="file">
+						<button class="btn" id='clean'>Стереть всё</button>
 					</div>
 				</div>
 			</div>

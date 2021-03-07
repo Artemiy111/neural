@@ -110,10 +110,11 @@ export default class DrawingCanvas {
     const color = "rgb(80, 214, 54)";
     const colorize = () => {
       for (let i = 0; i < preds.length; i++) {
-        progressValues[i].style.width = preds[i] + "%";
-        probabilities[i].innerHTML = preds[i] + "%";
-        let k = 1 - preds[i] / 100;
-        let [r, g, b] = color
+        const pred = parseFloat(preds[i]);
+        progressValues[i].style.width = pred + "%";
+        probabilities[i].innerHTML = pred + "%";
+        const k = 1 - pred / 100;
+        const [r, g, b] = color
           .slice(4, -2)
           .split(", ")
           .map((color) => parseInt(color));

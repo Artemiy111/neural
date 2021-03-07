@@ -1,43 +1,59 @@
 @import url("~reset.css");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+@import "fonts";
+
+$white: #fff;
+$black: #000;
+$primary: #53b6d4;
+
+$hover: #5366d4;
+$active: #5e299b;
+$light: #e5e5e5;
 
 * {
   font-family: "Roboto", sans-serif !important;
   font-size: 18px;
-  font-weight: 400;
-  line-height: 130%;
-
+  line-height: 130% !important;
   -ms-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
 }
-$white: #fff;
-$black: #000;
-$primary: rgb(54, 202, 74);
-$light: #e5e5e5;
 
 .wrapper {
   max-width: 915px;
   margin: 0 auto;
 }
 
-#determinant {
-  margin-top: 80px;
-}
-.display_image {
-  #draw_picture {
-    height: 420px;
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0;
+  position: relative;
+  &__title {
+    position: absolute;
+    font-weight: bold;
+    font-size: 48px;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
   }
-  .btn_shell {
-    margin-bottom: 40px;
+  &__image {
+    object-fit: cover;
+    border-radius: 5px;
+    width: 100%;
+    max-height: 150px;
+    height: 100%;
+    min-height: 100px;
   }
 }
+
 .content {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  flex-grow: 1;
 }
 
 input[type="file"] {
@@ -47,57 +63,73 @@ input[type="file"] {
 .btn_shell {
   display: flex;
   justify-content: space-evenly;
-}
-.btn {
-  font-weight: 800;
-  color: $primary;
-  background-color: $white;
-  border-radius: 0;
-  padding: 5px 15px 5px 15px;
-  border-radius: 5px;
-  border: 2px solid $primary;
-  outline: none;
-  transition: 0.2s;
-  &:hover {
-    cursor: pointer;
-    color: $black;
+  .btn {
+    font-weight: 800;
+    color: $primary;
+    background-color: $white;
+    border-radius: 0;
+    padding: 5px 15px 5px 15px;
+    border-radius: 5px;
+    border: 2px solid $primary;
+    outline: none;
+    transition: 0.2s;
+    &:hover {
+      cursor: pointer;
+      color: $hover;
+    }
+    &:active {
+      border: 2px solid $active;
+      color: $active;
+    }
   }
-  &:active {
-    color: $white;
-  }
 }
-
-#draw_picture {
-  max-width: 420px;
-  max-height: 420px;
-  border: $black 1px solid;
-  border-radius: 5px;
-  margin-bottom: 40px;
-  background-color: $white;
+.display_image {
+  #draw_picture {
+    max-width: 418px;
+    max-height: 418px;
+    border: $black solid 1px;
+    border-radius: 5px;
+    background-color: $white;
+  }
 }
 
 .info {
+  margin-left: 40px;
   height: 420px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-content: space-between;
-  margin-bottom: 40px;
-  h1 {
-    font-weight: 800;
-    font-size: 36px;
-  }
+  width: 100%;
 }
 
+.annotation {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+  p + p {
+    margin-top: 5px;
+  }
+  a {
+    text-decoration: none;
+    color: #53b6d4;
+    font-weight: bold;
+    transition: 0.2s;
+    &:hover {
+      color: #5366d4;
+    }
+    &:active {
+      color: #5e299b;
+    }
+  }
+}
 .bar_shell {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   &__bar {
-    display: flex;
-    margin-bottom: 10px;
-    &:last-child {
-      margin-bottom: 0;
+    & + & {
+      margin-top: 10px;
     }
+    display: flex;
     p {
       padding-top: 2px;
     }
@@ -130,10 +162,36 @@ input[type="file"] {
   .wrapper {
     width: 90%;
   }
+  .banner__title {
+    font-size: 42px;
+  }
 }
 @media screen and (max-width: 950px) {
   .content {
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
+  }
+  .banner__title {
+    font-size: 30px;
+  }
+  .info {
+    margin-left: 0;
+    max-width: 420px;
+    width: 100%;
+    height: auto;
+  }
+  .btn_shell {
+    margin: 20px 0;
+    .btn {
+      font-size: 16px;
+      padding: 3px 12px 3px 12px;
+    }
+  }
+  .annotation {
+    align-items: center;
+  }
+  #draw_picture {
+    max-width: 100%;
+    width: 100%;
   }
 } ;

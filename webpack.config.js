@@ -81,7 +81,7 @@ module.exports = {
         use: ["html-loader"],
       },
       {
-        test: /\.(?:|ico|gif|png|jpe?g)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
       },
       {
@@ -90,8 +90,8 @@ module.exports = {
         use: ["svgo-loader"],
       },
       {
-        test: /\.(woff(2)?|eot|ttf|otf)$/i,
-        type: "asset/inline",
+        test: /\.(eot|svg|ttf|woff|woff2)$/i,
+        type: "asset/resource",
         generator: {
           filename: `fonts/${filename("[ext]")}`,
         },
