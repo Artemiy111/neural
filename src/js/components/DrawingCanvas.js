@@ -2,14 +2,23 @@ import cursorBrush from "../../assets/cursor30.svg";
 import cursorRubber from "../../assets/cursor60.svg";
 
 export default class DrawingCanvas {
-  constructor(canv, canvSize, cellCount) {
-    this.canv = canv;
-    this.canv.width = this.canv.height = canvSize;
-    this.cellCount = cellCount;
-    this.cellSize = canvSize / cellCount;
+  constructor(options = {}) {
+    this.canv = options.canv;
+    this.canv.width = this.canv.height = options.canvSize;
+    this.cellCount = options.cellCount;
+    this.cellSize = options.canvSize / options.cellCount;
     this.ctx = this.canv.getContext("2d");
     this.ctx.lineJoin = "round";
     this.ctx.lineCap = "round";
+    this.cleanButton = options.cleanButton;
+
+    this.canv.addEventListener("mousemove", (event) => {
+      this.drawByMouse(event);
+    });
+
+    this.cleanButton.addEventListener("click", () => {
+      this.clean();
+    });
   }
   isMouseDown = false;
   stroke = {
@@ -33,57 +42,39 @@ export default class DrawingCanvas {
     brush: `url("${cursorBrush}") 15 15, pointer`,
     rubber: `url("${cursorRubber}") 30 30, pointer`,
   };
-  // drawLine(x1, y1, x2, y2, strokeStyle = this.stroke.style.brush) {
-  //   let strkStyle = this.ctx.strokeStyle;
-  //   this.ctx.strokeStyle = strokeStyle;
-  //   this.ctx.beginPath();
-  //   this.ctx.moveTo(x1, y1);
-  //   this.ctx.lineTo(x2, y2);
-  //   this.ctx.stroke();
-  //   this.ctx.fill();
-  //   this.ctx.strokeStyle = strkStyle;
-  // }
-  // drawCell() {
-  //   for (let x = this.cellSize; x < this.canv.height; x += this.cellSize) {
-  //     this.drawLine(x, 0, x, this.canv.height);
-  //   }
-  //   for (let y = this.cellSize; y < this.canv.width; y += this.cellSize) {
-  //     this.drawLine(0, y, this.canv.width, y);
-  //   }
-  // }
-  drawByMouse() {
-    this.canv.addEventListener(
-      "mousemove",
-      ((self) => (event) => {
-        if (event.buttons === 1) {
-          self.ctx.strokeStyle = self.stroke.style.brush;
-          self.ctx.lineWidth = self.line.width.brush;
-          self.canv.style.cursor = self.cursor.brush;
-          self.ctx.beginPath();
-          self.ctx.moveTo(event.offsetX, event.offsetY);
-          self.ctx.lineTo(
-            event.offsetX - event.movementX,
-            event.offsetY - event.movementY
-          );
-          self.ctx.stroke();
-          self.ctx.closePath();
-        }
-        if (event.buttons === 2) {
-          self.ctx.strokeStyle = self.stroke.style.rubber;
-          self.ctx.lineWidth = self.line.width.rubber;
-          self.canv.style.cursor = self.cursor.rubber;
 
-          self.ctx.beginPath();
-          self.ctx.moveTo(event.offsetX, event.offsetY);
-          self.ctx.lineTo(
-            event.offsetX - event.movementX,
-            event.offsetY - event.movementY
-          );
-          self.ctx.stroke();
-          self.ctx.closePath();
-        }
-      })(this)
-    );
+  clean() {
+    this.ctx.fillStyle = this.fill.style.rubber;
+    this.ctx.fillRect(0, 0, this.canv.height, this.canv.height);
+  }
+  drawByMouse(event) {
+    if (event.buttons === 1) {
+      this.ctx.strokeStyle = this.stroke.style.brush;
+      this.ctx.lineWidth = this.line.width.brush;
+      this.canv.style.cursor = this.cursor.brush;
+      this.ctx.beginPath();
+      this.ctx.moveTo(event.offsetX, event.offsetY);
+      this.ctx.lineTo(
+        event.offsetX - event.movementX,
+        event.offsetY - event.movementY
+      );
+      this.ctx.stroke();
+      this.ctx.closePath();
+    }
+    if (event.buttons === 2) {
+      this.ctx.strokeStyle = this.stroke.style.rubber;
+      this.ctx.lineWidth = this.line.width.rubber;
+      this.canv.style.cursor = this.cursor.rubber;
+
+      this.ctx.beginPath();
+      this.ctx.moveTo(event.offsetX, event.offsetY);
+      this.ctx.lineTo(
+        event.offsetX - event.movementX,
+        event.offsetY - event.movementY
+      );
+      this.ctx.stroke();
+      this.ctx.closePath();
+    }
   }
   getImagePixelsData() {
     const imagePixelsData = new Array(28).fill().map(() => Array(28).fill(0));
@@ -109,5 +100,28 @@ export default class DrawingCanvas {
       i++;
     }
     return imagePixelsData;
+  }
+
+  setProgressValues(preds) {
+    const probabilities = [...document.getElementsByClassName("probability")];
+    const progressValues = [
+      ...document.getElementsByClassName("progress__value"),
+    ];
+    const color = "rgb(80, 214, 54)";
+    const colorize = () => {
+      for (let i = 0; i < preds.length; i++) {
+        progressValues[i].style.width = preds[i] + "%";
+        probabilities[i].innerHTML = preds[i] + "%";
+        let k = 1 - preds[i] / 100;
+        let [r, g, b] = color
+          .slice(4, -2)
+          .split(", ")
+          .map((color) => parseInt(color));
+        r = Math.round(r + (g - r) * k);
+        g = Math.round(g + (b - g) * k);
+        progressValues[i].style.backgroundColor = `rgb(${[r, g, b]})`;
+      }
+    };
+    colorize();
   }
 }

@@ -19,7 +19,7 @@ x_train, x_test = np.expand_dims(x_train, axis=3), np.expand_dims(x_test, axis=3
 
 print(f'x_train.shape: {x_train.shape}')
 CHECKPOINT_PATH = path.abspath(f'neural_networks/saved_models/{path.splitext(basename(__file__))[0]}/{path.splitext(basename(__file__))[0]}')
-EPOCHS = 1
+EPOCHS = 15
 BATCH_SIZE = 32
 
 
@@ -60,7 +60,7 @@ history = model.fit(x_train, y_train,
 model.save(CHECKPOINT_PATH + '.h5')
 
 # Сохранение в формате TF.js
-# tensorflowjs_converter --input_format keras neural_networks/saved_models/digit_network_1/digit_network_1.h5 neural_networks/saved_models/digit_network_1/digit_network_1/js_model
+# tensorflowjs_converter --input_format keras neural_networks/saved_models/digit_network_1/digit_network_1.h5 src/assets/saved_models/digit_network_1/js_model
 
 loss, acc = model.evaluate(x_test, y_test, batch_size=BATCH_SIZE)
 print('Restored model, accuracy: {:.2f}%'.format(100*acc))

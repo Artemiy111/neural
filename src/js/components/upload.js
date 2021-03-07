@@ -1,11 +1,15 @@
-export default function upload(selector, canvas, options = {}) {
-  const input = document.querySelector(selector);
-  const download = document.createElement("button");
+import Model from "./Model";
+const model = new Model();
 
-  download.classList.add("btn");
-  download.setAttribute("id", "download");
-  download.textContent = "Загрузить фото";
-  input.insertAdjacentElement("afterend", download);
+export default function upload(options = {}) {
+  const input = document.querySelector(options.inputSelector);
+  const canvas = options.canvas;
+  const uploadButton = document.createElement("button");
+
+  uploadButton.classList.add("btn");
+  uploadButton.setAttribute("id", options.createdButtonSelector.slice(1));
+  uploadButton.textContent = options.createdButtonText;
+  input.insertAdjacentElement("afterend", uploadButton);
 
   if (options.extensions && Array.isArray(options.extensions)) {
     input.setAttribute("accept", options.extensions.join(","));
@@ -15,41 +19,36 @@ export default function upload(selector, canvas, options = {}) {
     input.click();
   };
 
-  const changeHandler = (event) => {
-    if (!event.target.files.length) {
-      return;
-    }
-    const file = Array.from(event.target.files)[0];
-
+  const img = new Image();
+  let imgURL;
+  const changeHandler = (input) => {
     const reader = new FileReader();
+    // console.log(new Blob([file], { type: "image" }));
+    input.addEventListener("change", (event) => {
+      if (!event.target.files.length) {
+        return;
+      }
+      const file = Array.from(event.target.files)[0];
+      reader.addEventListener("load", (event) => {
+        img.src = event.target.result;
+        imgURL = img.src;
+        img.onload = drawImage;
+      });
+      reader.readAsDataURL(file);
+    });
 
-    const img = new Image();
-    reader.onload = (event) => {
-      img.src = event.target.result;
-      img.onload = () => {
-        try {
-          canvas.ctx.drawImage(
-            img,
-            0,
-            0,
-            canvas.canv.width,
-            canvas.canv.height
-          );
-
-          let imagePixelsData = canvas.getImagePixelsData();
-          getPredictions(imagePixelsData).then((data) => {
-            setProgressValue(data);
-          });
-          img.src = "";
-        } catch (err) {
-          console.log("Img: ", err);
-        }
-      };
-    };
-
-    reader.readAsDataURL(file);
+    async function drawImage() {
+      try {
+        canvas.ctx.drawImage(img, 0, 0, canvas.canv.width, canvas.canv.height);
+        const imagePixelsData = canvas.getImagePixelsData();
+        const preds = await model.getPredictions(imagePixelsData);
+        canvas.setProgressValues(preds);
+      } catch (err) {
+        console.error("Img: ", err);
+      }
+    }
   };
 
-  download.addEventListener("click", inputClick);
-  input.addEventListener("change", changeHandler);
+  uploadButton.addEventListener("click", inputClick);
+  input.addEventListener("click", changeHandler.bind(null, input));
 }

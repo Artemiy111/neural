@@ -1,19 +1,17 @@
 # Нейросеть по определению чисел
 
-![](./web/img/screen.jpg)
+![](./src/assets/screen.jpg)
 
 ### Требования
 
 Версия Python - 3.8 ([Скачать Python](https://www.python.org/downloads/release/python-388/))  
-Версия Node.js - последняя ([Скачать Node.js](https://nodejs.org/en/download/current/))
+Версия Node.js - Current ([Скачать Node.js](https://nodejs.org/en/download/current/))
 
 ### Установка
 
 1. Клонирование репозитория или скачивание ZIP архива:  
-   `git clone https://github.com/Artemiy111/school-project-2021.git
-   Желательно установить виртуальное окружение и активировать его: `python -m venv venv` и `venv/scripts/activate`
-   
-2. Установка зависсимостей: `pip install -r requirements.txt` и `npm install`
+   `git clone https://github.com/Artemiy111/project_neural_network.git`
+2. Установка зависсимостей: `npm install`
 
 ### Запуск
 
