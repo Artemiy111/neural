@@ -3,7 +3,10 @@ import * as tf from "@tensorflow/tfjs";
 const modelPath = "../assets/saved_models/digit_network_1/js_model/model.json";
 
 export default class Model {
-  constructor() {}
+  constructor(options = {}) {
+    this.modelPath = options.modelPath;
+    // console.log(this.modelPaths);
+  }
 
   async loadModel() {
     try {
@@ -24,7 +27,6 @@ export default class Model {
         );
         return output;
       });
-      console.log(predictions);
       return predictions;
     } catch (err) {
       console.error(err);

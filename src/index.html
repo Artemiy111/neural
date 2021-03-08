@@ -12,99 +12,58 @@
 	<section class="wrapper">
 		<div class="banner">
 			<h1 class='banner__title'>Определение числа по изображению</h1>
-			<img class='banner__image' src="./assets/banner1.jpg" alt="">
+			<img class='banner__image' src="./assets/banner2.jpg" alt="">
 		</div>
 	</section>
 
-	<section id=root class='wrapper'>
+	<section class='wrapper'>
 			<div class="content">
 				<div class="display_image">
-					<canvas id='draw_picture'></canvas>
+					<canvas id='draw_digit' class='display_image__canvas'></canvas>
 					<div class="annotation">
 						<p>ЛКМ &#8211; Кисть&#160;&#160;&#160;&#160;ПКМ &#8211; Ластик</p>
 						<p>Исходники:&#160;&#160;<a href="https://github.com/Artemiy111/project_neural_network">Проект на Github</a></p>
-						
 					</div>
 				</div>
 				<div class="info">
 					<div class="bar_shell">
-						<div class="bar_shell__bar">
-							<p>0</p>
-							<div class="progress">
-								<p class="probability">0%</p>
-								<div class="progress__value"></div>
-							</div>
-						</div>
-						<div class="bar_shell__bar">
-							<p>1</p>
-							<div class="progress">
-								<p class="probability">0%</p>
-								<div class="progress__value"></div>
-							</div>
-						</div>
-						<div class="bar_shell__bar">
-							<p>2</p>
-							<div class="progress">
-								<p class="probability">0%</p>
-								<div class="progress__value"></div>
-							</div>
-						</div>
-						<div class="bar_shell__bar">
-							<p>3</p>
-							<div class="progress">
-								<p class="probability">0%</p>
-								<div class="progress__value"></div>
-							</div>
-						</div>
-						<div class="bar_shell__bar">
-							<p>4</p>
-							<div class="progress">
-								<p class="probability">0%</p>
-								<div class="progress__value"></div>
-							</div>
-						</div>
-						<div class="bar_shell__bar">
-							<p>5</p>
-							<div class="progress">
-								<p class="probability">0%</p>
-								<div class="progress__value"></div>
-							</div>
-						</div>
-						<div class="bar_shell__bar">
-							<p>6</p>
-							<div class="progress">
-								<p class="probability">0%</p>
-								<div class="progress__value"></div>
-							</div>
-						</div>
-						<div class="bar_shell__bar">
-							<p>7</p>
-							<div class="progress">
-								<p class="probability">0%</p>
-								<div class="progress__value"></div>
-							</div>
-						</div>
-						<div class="bar_shell__bar">
-							<p>8</p>
-							<div class="progress">
-								<p class="probability">0%</p>
-								<div class="progress__value"></div>
-							</div>
-						</div>
-						<div class="bar_shell__bar">
-							<p>9</p>
-							<div class="progress">
-								<p class="probability">0%</p>
-								<div class="progress__value"></div>
-							</div>
-						</div>
+						<!-- Dinamic display -->
 					</div>
 					<div class="btn_shell">
-						<input type="file" name="" id="file">
-						<button class="btn" id='clean'>Стереть всё</button>
+						<input type="file" id="input_img_digit">
+						<button class="btn" id='clean_digit'>Стереть всё</button>
 					</div>
 				</div>
 			</div>
 	</section>
+<!-- 
+	<section class="wrapper">
+		<div class="banner">
+			<h1 class='banner__title'>Определение буквы по изображению</h1>
+			<img class='banner__image' src="./assets/banner3.jpg" alt="">
+		</div>
+	</section> -->
+<!-- 
+	<section class='wrapper'>
+		<div class="content">
+			<div class="display_image">
+				<canvas id='draw_letter' class='display_image__canvas'></canvas>
+				<div class="annotation">
+					<p>ЛКМ &#8211; Кисть&#160;&#160;&#160;&#160;ПКМ &#8211; Ластик</p>
+					<p>Исходники:&#160;&#160;<a href="https://github.com/Artemiy111/project_neural_network">Проект на Github</a></p>
+				</div>
+			</div>
+			<div class="info">
+				<div class="bar_shell"> -->
+					<!-- Dinamic display -->
+				<!-- </div>
+				<div class="btn_shell">
+					<input type="file" name="" id="input_img_letter">
+					<button class="btn" id='clean_letter'>Стереть всё</button>
+				</div>
+			</div>
+		</div>
+</section> -->
+
 </body>
 </html>

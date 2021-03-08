@@ -4,6 +4,7 @@ const model = new Model();
 export default function upload(options = {}) {
   const input = document.querySelector(options.inputSelector);
   const canvas = options.canvas;
+  const barShell = options.barShell;
   const uploadButton = document.createElement("button");
 
   uploadButton.classList.add("btn");
@@ -20,7 +21,6 @@ export default function upload(options = {}) {
   };
 
   const img = new Image();
-  let imgURL;
   const changeHandler = (input) => {
     const reader = new FileReader();
     // console.log(new Blob([file], { type: "image" }));
@@ -31,7 +31,6 @@ export default function upload(options = {}) {
       const file = Array.from(event.target.files)[0];
       reader.addEventListener("load", (event) => {
         img.src = event.target.result;
-        imgURL = img.src;
         img.onload = drawImage;
       });
       reader.readAsDataURL(file);
@@ -42,7 +41,7 @@ export default function upload(options = {}) {
         canvas.ctx.drawImage(img, 0, 0, canvas.canv.width, canvas.canv.height);
         const imagePixelsData = canvas.getImagePixelsData();
         const preds = await model.getPredictions(imagePixelsData);
-        canvas.setProgressValues(preds);
+        barShell.setProgressValues(preds);
       } catch (err) {
         console.error("Img: ", err);
       }

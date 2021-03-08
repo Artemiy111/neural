@@ -90,7 +90,7 @@ module.exports = {
         use: ["svgo-loader"],
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2)$/i,
+        test: /\.(eot|ttf|woff|woff2)$/i,
         type: "asset/resource",
         generator: {
           filename: `fonts/${filename("[ext]")}`,

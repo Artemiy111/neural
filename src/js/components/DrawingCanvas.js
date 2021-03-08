@@ -3,15 +3,14 @@ import cursorRubber from "../../assets/cursor60.svg";
 
 export default class DrawingCanvas {
   constructor(options = {}) {
-    this.canv = options.canv;
+    this.canv = document.querySelector(options.canvSelector);
     this.canv.width = this.canv.height = options.canvSize;
     this.cellCount = options.cellCount;
     this.cellSize = options.canvSize / options.cellCount;
     this.ctx = this.canv.getContext("2d");
     this.ctx.lineJoin = "round";
     this.ctx.lineCap = "round";
-    this.cleanButton = options.cleanButton;
-
+    this.cleanButton = document.querySelector(options.cleanButtonSelector);
     this.canv.addEventListener("mousemove", (event) => {
       this.drawByMouse(event);
     });
@@ -100,29 +99,5 @@ export default class DrawingCanvas {
       i++;
     }
     return imagePixelsData;
-  }
-
-  setProgressValues(preds) {
-    const probabilities = [...document.getElementsByClassName("probability")];
-    const progressValues = [
-      ...document.getElementsByClassName("progress__value"),
-    ];
-    const color = "rgb(80, 214, 54)";
-    const colorize = () => {
-      for (let i = 0; i < preds.length; i++) {
-        const pred = parseFloat(preds[i]);
-        progressValues[i].style.width = pred + "%";
-        probabilities[i].innerHTML = pred + "%";
-        const k = 1 - pred / 100;
-        const [r, g, b] = color
-          .slice(4, -2)
-          .split(", ")
-          .map((color) => parseInt(color));
-        r = Math.round(r + (g - r) * k);
-        g = Math.round(g + (b - g) * k);
-        progressValues[i].style.backgroundColor = `rgb(${[r, g, b]})`;
-      }
-    };
-    colorize();
   }
 }

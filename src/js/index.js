@@ -1,39 +1,85 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-
-import "../scss/index.scss";
 import Model from "./components/Model";
+import "../scss/index.scss";
+
 import DrawingCanvas from "./components/DrawingCanvas";
 import upload from "./components/upload";
+import BarShell from "./components/BarShell";
 
-const model = new Model();
-
-const canvas = new DrawingCanvas({
-  canv: document.querySelector("#draw_picture"),
-  canvSize: 420,
-  cellCount: 28,
-  cleanButton: document.querySelector("#clean"),
+// Digit Prediction
+const digitModel = new Model({
+  modelPath: "../assets/saved_models/digit_network_1/js_model/model.json",
 });
-
+const digitCanvas = new DrawingCanvas({
+  canvSelector: "#draw_digit",
+  canvSize: 418,
+  cellCount: 28,
+  cleanButtonSelector: "#clean_digit",
+});
+const digitBarShell = new BarShell({
+  canvas: digitCanvas,
+  titles: "0123456789",
+});
 upload({
-  inputSelector: "#file",
-  createdButtonSelector: "#upload",
+  inputSelector: "#input_img_digit",
+  createdButtonSelector: "#upload_digit",
   createdButtonText: "Загрузить фото",
-  canvas: canvas,
+  canvas: digitCanvas,
+  barShell: digitBarShell,
   extensions: [".jpeg", ".jpg", ".png", ".JPEG", ".JPG", ".PNG"],
 });
 
-async function showPredictions(canvas, model) {
-  const imagePixelsData = canvas.getImagePixelsData();
-  const preds = await model.getPredictions(imagePixelsData);
-  canvas.setProgressValues(preds);
+digitCanvas.canv.addEventListener("mouseup", () => {
+  showPredictions(digitCanvas, digitModel, digitBarShell);
+});
+
+digitCanvas.cleanButton.addEventListener("click", () => {
+  showPredictions(digitCanvas, digitModel, digitBarShell);
+});
+
+// // Letter Prediction
+
+// const letterModel = new Model({
+//   modelPath: "../assets/saved_models/digit_network_1/js_model/model.json",
+// });
+// const letterCanvas = new DrawingCanvas({
+//   canvSelector: "#draw_letter",
+//   canvSize: 418,
+//   cellCount: 28,
+//   cleanButtonSelector: "#clean_letter",
+// });
+// const letterBarShell = new BarShell({
+//   canvas: letterCanvas,
+//   titles: "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ",
+// });
+// upload({
+//   inputSelector: "#input_img_letter",
+//   createdButtonSelector: "#upload_letter",
+//   createdButtonText: "Загрузить фото",
+//   canvas: letterCanvas,
+//   barShell: letterBarShell,
+//   extensions: [".jpeg", ".jpg", ".png", ".JPEG", ".JPG", ".PNG"],
+// });
+
+// letterCanvas.canv.addEventListener("mouseup", () => {
+//   showPredictions(letterCanvas, letterModel, letterBarShell);
+// });
+
+// letterCanvas.cleanButton.addEventListener("click", () => {
+//   showPredictions(letterCanvas, letterModel, letterBarShell);
+// });
+
+// Another
+async function showPredictions(canvas, model, barShell) {
+  try {
+    const imagePixelsData = canvas.getImagePixelsData();
+    const preds = await model.getPredictions(imagePixelsData);
+    barShell.setProgressValues(preds);
+  } catch (err) {
+    console.error(err);
+  }
 }
-canvas.canv.addEventListener("mouseup", () => {
-  showPredictions(canvas, model);
-});
-canvas.cleanButton.addEventListener("click", () => {
-  showPredictions(canvas, model);
-});
 
 document.oncontextmenu = () => {
   return false;
