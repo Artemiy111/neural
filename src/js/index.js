@@ -40,35 +40,35 @@ digitCanvas.cleanButton.addEventListener("click", () => {
 
 // // Letter Prediction
 
-// const letterModel = new Model({
-//   modelPath: "../assets/saved_models/digit_network_1/js_model/model.json",
-// });
-// const letterCanvas = new DrawingCanvas({
-//   canvSelector: "#draw_letter",
-//   canvSize: 418,
-//   cellCount: 28,
-//   cleanButtonSelector: "#clean_letter",
-// });
-// const letterBarShell = new BarShell({
-//   canvas: letterCanvas,
-//   titles: "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ",
-// });
-// upload({
-//   inputSelector: "#input_img_letter",
-//   createdButtonSelector: "#upload_letter",
-//   createdButtonText: "Загрузить фото",
-//   canvas: letterCanvas,
-//   barShell: letterBarShell,
-//   extensions: [".jpeg", ".jpg", ".png", ".JPEG", ".JPG", ".PNG"],
-// });
+const letterModel = new Model({
+  modelPath: "../assets/saved_models/digit_network_1/js_model/model.json",
+});
+const letterCanvas = new DrawingCanvas({
+  canvSelector: "#draw_letter",
+  canvSize: 418,
+  cellCount: 28,
+  cleanButtonSelector: "#clean_letter",
+});
+const letterBarShell = new BarShell({
+  canvas: letterCanvas,
+  titles: "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ",
+});
+upload({
+  inputSelector: "#input_img_letter",
+  createdButtonSelector: "#upload_letter",
+  createdButtonText: "Загрузить фото",
+  canvas: letterCanvas,
+  barShell: letterBarShell,
+  extensions: [".jpeg", ".jpg", ".png", ".JPEG", ".JPG", ".PNG"],
+});
 
-// letterCanvas.canv.addEventListener("mouseup", () => {
-//   showPredictions(letterCanvas, letterModel, letterBarShell);
-// });
+letterCanvas.canv.addEventListener("mouseup", () => {
+  showPredictions(letterCanvas, letterModel, letterBarShell);
+});
 
-// letterCanvas.cleanButton.addEventListener("click", () => {
-//   showPredictions(letterCanvas, letterModel, letterBarShell);
-// });
+letterCanvas.cleanButton.addEventListener("click", () => {
+  showPredictions(letterCanvas, letterModel, letterBarShell);
+});
 
 // Another
 async function showPredictions(canvas, model, barShell) {

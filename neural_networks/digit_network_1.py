@@ -9,7 +9,6 @@ from tensorflow.keras.layers import Dense, Flatten, Dropout, Conv2D, MaxPooling2
 import tensorflowjs as tfjs
 
 import numpy as np
-import matplotlib.pyplot as plt
 
 from tensorflow.keras.datasets import mnist
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -18,7 +17,7 @@ x_train, x_test = np.expand_dims(x_train, axis=3), np.expand_dims(x_test, axis=3
 
 
 print(f'x_train.shape: {x_train.shape}')
-CHECKPOINT_PATH = path.abspath(f'neural_networks/saved_models/{path.splitext(basename(__file__))[0]}/{path.splitext(basename(__file__))[0]}')
+CHECKPOINT_PATH = path.abspath(f'./neural_networks/saved_models/{path.splitext(basename(__file__))[0]}/{path.splitext(basename(__file__))[0]}')
 EPOCHS = 15
 BATCH_SIZE = 32
 
