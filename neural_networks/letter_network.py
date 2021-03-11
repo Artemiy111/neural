@@ -9,10 +9,9 @@ from tensorflow.keras.preprocessing import image, image_dataset_from_directory
 import tensorflowjs as tfjs
 
 import numpy as np
-import h5py
 
 CHECKPOINT_PATH = path.abspath(f'./neural_networks/saved_models/{path.splitext(basename(__file__))[0]}/{path.splitext(basename(__file__))[0]}')
-EPOCHS = 15
+EPOCHS = 5
 BATCH_SIZE = 32
 IMAGE_SIZE = (28, 28)
 
@@ -60,7 +59,7 @@ history = model.fit(train_dataset,
 model.save(CHECKPOINT_PATH + '.h5')
 
 # Сохранение в формате TF.js
-# tensorflowjs_converter --input_format keras neural_networks/saved_models/digit_network_1/digit_network_1.h5 src/assets/saved_models/digit_network_1/js_model
+# tensorflowjs_converter --input_format keras neural_networks/saved_models/letter_network/letter_network.h5 src/assets/saved_models/letter_network/js_model
 
 def main():
 	pass

@@ -10,12 +10,14 @@ import BarShell from "./components/BarShell";
 // Digit Prediction
 const digitModel = new Model({
   modelPath: "../assets/saved_models/digit_network_1/js_model/model.json",
+  dims: 1,
 });
 const digitCanvas = new DrawingCanvas({
   canvSelector: "#draw_digit",
   canvSize: 418,
   cellCount: 28,
   cleanButtonSelector: "#clean_digit",
+  dims: 1,
 });
 const digitBarShell = new BarShell({
   canvas: digitCanvas,
@@ -41,17 +43,20 @@ digitCanvas.cleanButton.addEventListener("click", () => {
 // // Letter Prediction
 
 const letterModel = new Model({
-  modelPath: "../assets/saved_models/digit_network_1/js_model/model.json",
+  // modelPath: "../assets/saved_models/digit_network_1/js_model/model.json",
+  modelPath: "../assets/saved_models/letter_network/js_model/model.json",
+  dims: 3,
 });
 const letterCanvas = new DrawingCanvas({
   canvSelector: "#draw_letter",
   canvSize: 418,
   cellCount: 28,
   cleanButtonSelector: "#clean_letter",
+  dims: 3,
 });
 const letterBarShell = new BarShell({
   canvas: letterCanvas,
-  titles: "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ",
+  titles: "ЁАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯ",
 });
 upload({
   inputSelector: "#input_img_letter",

@@ -1,16 +1,14 @@
 import * as tf from "@tensorflow/tfjs";
 
-const modelPath = "../assets/saved_models/digit_network_1/js_model/model.json";
-
 export default class Model {
   constructor(options = {}) {
     this.modelPath = options.modelPath;
-    // console.log(this.modelPaths);
+    this.dims = options.dims;
   }
 
   async loadModel() {
     try {
-      const model = await tf.loadLayersModel(modelPath);
+      const model = await tf.loadLayersModel(this.modelPath);
       return model;
     } catch (err) {
       console.error(err);
@@ -18,10 +16,10 @@ export default class Model {
   }
 
   async getPredictions(imageData) {
-    const model = await this.loadModel();
     try {
+      const model = await this.loadModel();
       const predictions = tf.tidy(() => {
-        let img = tf.tensor4d(imageData.flat(), [1, 28, 28, 1]);
+        let img = tf.tensor4d(imageData.flat().flat(), [1, 28, 28, this.dims]);
         const output = Array.from(model.predict(img).dataSync()).map((data) =>
           (data * 100).toFixed(2)
         );

@@ -7,27 +7,16 @@ export default class BarShell {
   }
   createBars() {
     for (let key in this.titles) {
-      const bar = document.createElement("div");
-      bar.classList.add("bar_shell__bar");
-      this.barShell.insertAdjacentElement("beforeEnd", bar);
-
-      const title = document.createElement("p");
-      title.classList.add("bar__title");
-      title.innerText = `${this.titles[key]}`;
-      bar.insertAdjacentElement("afterbegin", title);
-
-      const progress = document.createElement("div");
-      progress.classList.add("progress");
-      bar.insertAdjacentElement("beforeEnd", progress);
-
-      const probabilityValue = document.createElement("p");
-      probabilityValue.classList.add("probability_value");
-      probabilityValue.innerText = `0%`;
-      progress.insertAdjacentElement("afterbegin", probabilityValue);
-
-      const progressValue = document.createElement("div");
-      progressValue.classList.add("progress__value");
-      progress.insertAdjacentElement("beforeEnd", progressValue);
+      const bar = `
+      <div class="bar_shell__bar">
+        <p class="bar__title">${this.titles[key]}</p>
+        <div class="progress">
+          <p class="probability_value">0%</p>
+          <div class="progress__value"></div>
+        </div>
+      </div>
+      `;
+      this.barShell.insertAdjacentHTML("beforeEnd", bar);
     }
   }
   setProgressValues(preds) {

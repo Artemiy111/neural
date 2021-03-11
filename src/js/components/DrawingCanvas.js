@@ -7,6 +7,7 @@ export default class DrawingCanvas {
     this.canv.width = this.canv.height = options.canvSize;
     this.cellCount = options.cellCount;
     this.cellSize = options.canvSize / options.cellCount;
+    this.dims = options.dims;
     this.ctx = this.canv.getContext("2d");
     this.ctx.lineJoin = "round";
     this.ctx.lineCap = "round";
@@ -89,9 +90,15 @@ export default class DrawingCanvas {
           g = data.data[1],
           b = data.data[2]
         ) => {
-          return Math.round(r * 0.299 + g * 0.587 + b * 0.114) === 0
-            ? 0
-            : 255 - Math.round(r * 0.299 + g * 0.587 + b * 0.114);
+          const colorList = [];
+          for (let dim = 0; dim < this.dims; dim++) {
+            const color =
+              Math.round(r * 0.299 + g * 0.587 + b * 0.114) === 0
+                ? 0
+                : 255 - Math.round(r * 0.299 + g * 0.587 + b * 0.114);
+            colorList.push(color);
+          }
+          return colorList;
         };
         imagePixelsData[j][i] = grayScale();
         j++;
