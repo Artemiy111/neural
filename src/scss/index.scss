@@ -1,5 +1,5 @@
-@import url("~reset.css");
-@import "fonts";
+@import url('~reset.css');
+@import 'fonts';
 
 $white: #fff;
 $black: #000;
@@ -10,7 +10,7 @@ $active: #5e299b;
 $light: #e5e5e5;
 
 * {
-  font-family: "Roboto", sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
   font-size: 18px;
   line-height: 130% !important;
   -ms-user-select: none;
@@ -57,7 +57,7 @@ $light: #e5e5e5;
   margin-bottom: 40px;
 }
 
-input[type="file"] {
+input[type='file'] {
   display: none;
 }
 
