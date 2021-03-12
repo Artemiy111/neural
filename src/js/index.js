@@ -30,6 +30,7 @@ upload({
   canvas: digitCanvas,
   barShell: digitBarShell,
   extensions: [".jpeg", ".jpg", ".png", ".JPEG", ".JPG", ".PNG"],
+  model: digitModel,
 });
 
 digitCanvas.canv.addEventListener("mouseup", () => {
@@ -65,6 +66,7 @@ upload({
   canvas: letterCanvas,
   barShell: letterBarShell,
   extensions: [".jpeg", ".jpg", ".png", ".JPEG", ".JPG", ".PNG"],
+  model: letterModel,
 });
 
 letterCanvas.canv.addEventListener("mouseup", () => {

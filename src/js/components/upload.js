@@ -1,11 +1,11 @@
 import Model from "./Model";
-const model = new Model();
 
 export default function upload(options = {}) {
   const input = document.querySelector(options.inputSelector);
   const canvas = options.canvas;
   const barShell = options.barShell;
   const uploadButton = document.createElement("button");
+  const model = options.model;
 
   uploadButton.classList.add("btn");
   uploadButton.setAttribute("id", options.createdButtonSelector.slice(1));
