@@ -34,7 +34,7 @@ export default class BarShell {
       const [r, g, b] = color
         .slice(4, -2)
         .split(', ')
-        .map((color) => parseInt(color))
+        .map(color => parseInt(color))
       r = Math.round(r + (g - r) * k)
       g = Math.round(g + (b - g) * k)
       progressValue.style.backgroundColor = `rgb(${[r, g, b]})`

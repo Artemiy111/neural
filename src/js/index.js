@@ -2,7 +2,6 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import Model from './components/Model'
 import '../scss/index.scss'
-
 import DrawingCanvas from './components/DrawingCanvas'
 import upload from './components/upload'
 import BarShell from './components/BarShell'
@@ -41,19 +40,18 @@ digitCanvas.cleanButton.addEventListener('click', () => {
   showPredictions(digitCanvas, digitModel, digitBarShell)
 })
 
-// // Letter Prediction
+// Letter Prediction
 
 const letterModel = new Model({
-  // modelPath: "../assets/saved_models/digit_network_1/js_model/model.json",
   modelPath: '../assets/saved_models/letter_network/js_model/model.json',
-  dims: 3,
+  dims: 1,
 })
 const letterCanvas = new DrawingCanvas({
   canvSelector: '#draw_letter',
   canvSize: 418,
   cellCount: 28,
   cleanButtonSelector: '#clean_letter',
-  dims: 3,
+  dims: 1,
 })
 const letterBarShell = new BarShell({
   canvas: letterCanvas,

@@ -20,7 +20,7 @@ export default class Model {
       const model = await this.loadModel()
       const predictions = tf.tidy(() => {
         let img = tf.tensor4d(imageData.flat().flat(), [1, 28, 28, this.dims])
-        const output = Array.from(model.predict(img).dataSync()).map((data) =>
+        const output = Array.from(model.predict(img).dataSync()).map(data =>
           (data * 100).toFixed(2)
         )
         return output

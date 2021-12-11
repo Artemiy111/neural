@@ -1,47 +1,47 @@
-const path = require("path");
+const path = require('path')
 
-const HTMLWebpackPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-const isDev = process.env.NODE_ENV === "development";
-const isProd = !isDev;
+const isDev = process.env.NODE_ENV === 'development'
+const isProd = !isDev
 
-const filename = (ext) =>
-  isDev ? `[name].${ext}` : `[name].[contenthash].${ext}`;
+const filename = ext =>
+  isDev ? `[name].${ext}` : `[name].[contenthash].${ext}`
 
 module.exports = {
-  context: path.resolve(__dirname, "./src"),
-  entry: "./js/index.js",
+  context: path.resolve(__dirname, './src'),
+  entry: './js/index.js',
   output: {
-    filename: `./js/${filename("js")}`,
-    path: path.resolve(__dirname, "./dist"),
-    publicPath: "",
-    assetModuleFilename: `img/${filename("[ext]")}`,
+    filename: `./js/${filename('js')}`,
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '',
+    assetModuleFilename: `img/${filename('[ext]')}`,
   },
   experiments: {
     topLevelAwait: true,
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./"),
+      '@': path.resolve(__dirname, './'),
     },
   },
-  mode: "development",
-  target: isDev ? "web" : "browserslist",
+  mode: 'development',
+  target: isDev ? 'web' : 'browserslist',
   devServer: {
     historyApiFallback: true,
-    contentBase: path.resolve(__dirname, "./dist"),
+    contentBase: path.resolve(__dirname, './dist'),
     open: true,
     compress: true,
     hot: true,
     port: 3000,
   },
-  devtool: isProd ? false : "source-map",
+  devtool: isProd ? false : 'source-map',
   plugins: [
     new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, "./src/index.html"),
+      template: path.resolve(__dirname, './src/index.html'),
       filename: `index.html`,
       minify: {
         collapseWhitespace: isProd,
@@ -54,13 +54,13 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: `./css/${filename("css")}`,
+      filename: `./css/${filename('css')}`,
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, "./src/assets"),
-          to: path.resolve(__dirname, "./dist/assets"),
+          from: path.resolve(__dirname, './src/assets'),
+          to: path.resolve(__dirname, './dist/assets'),
         },
       ],
     }),
@@ -72,28 +72,28 @@ module.exports = {
         exclude: /(node_modules)/,
         use: [
           {
-            loader: "babel-loader",
+            loader: 'babel-loader',
           },
         ],
       },
       {
         test: /\.html$/,
-        use: ["html-loader"],
+        use: ['html-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset/resource",
+        type: 'asset/resource',
       },
       {
         test: /\.svg$/,
-        type: "asset/inline",
-        use: ["svgo-loader"],
+        type: 'asset/inline',
+        use: ['svgo-loader'],
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/i,
-        type: "asset/resource",
+        type: 'asset/resource',
         generator: {
-          filename: `fonts/${filename("[ext]")}`,
+          filename: `fonts/${filename('[ext]')}`,
         },
       },
       {
@@ -103,12 +103,12 @@ module.exports = {
             ? {
                 loader: MiniCssExtractPlugin.loader,
               }
-            : "style-loader",
-          "css-loader",
-          "postcss-loader",
-          "sass-loader",
+            : 'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
         ],
       },
     ],
   },
-};
+}

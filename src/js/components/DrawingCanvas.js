@@ -12,7 +12,7 @@ export default class DrawingCanvas {
     this.ctx.lineJoin = 'round'
     this.ctx.lineCap = 'round'
     this.cleanButton = document.querySelector(options.cleanButtonSelector)
-    this.canv.addEventListener('mousemove', (event) => {
+    this.canv.addEventListener('mousemove', event => {
       this.drawByMouse(event)
     })
 

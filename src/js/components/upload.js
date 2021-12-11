@@ -19,15 +19,15 @@ export default function upload(options = {}) {
   }
 
   const img = new Image()
-  const changeHandler = (input) => {
+  const changeHandler = input => {
     const reader = new FileReader()
     // console.log(new Blob([file], { type: "image" }));
-    input.addEventListener('change', (event) => {
+    input.addEventListener('change', event => {
       if (!event.target.files.length) {
         return
       }
       const file = Array.from(event.target.files)[0]
-      reader.addEventListener('load', (event) => {
+      reader.addEventListener('load', event => {
         img.src = event.target.result
         img.onload = drawImage
       })
