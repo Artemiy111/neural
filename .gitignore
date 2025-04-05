@@ -10,5 +10,4 @@ neural_networks/Cyrillic
 # Dependencies
 node_modules/
 *.rar
-# npm
-package-lock.json
+

@@ -2,23 +2,9 @@
 
 ![](./src/assets/screen.jpg)
 
-#### Требования
-
-Версия Node.js - Current ([Скачать Node.js](https://nodejs.org/en/download/current/))
-
-#### Живой пример
-
-Смотреть: [neural.biplane-design.com](http://neural.biplane-design.com/)
-
-#### Установка
-
-1. Клонирование репозитория или скачивание ZIP архива:  
-   `git clone https://github.com/Artemiy111/project_neural_network.git`
-2. Установка зависсимостей: `npm install`
-
-#### Запуск
 
 ```sh
+npm install
 npm run start
 ```
 

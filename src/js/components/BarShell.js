@@ -31,7 +31,7 @@ export default class BarShell {
       probabilityValue.innerHTML = pred + '%'
       progressValue.style.width = pred + '%'
       const k = 1 - pred / 100
-      const [r, g, b] = color
+      let [r, g, b] = color
         .slice(4, -2)
         .split(', ')
         .map(color => parseInt(color))

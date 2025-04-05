@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/src/assets/favicon.png" type="image/x-icon" />
+    <title>Neural Network</title>
+  </head>
+  <body>
+    <section class="wrapper">
+      <div class="banner">
+        <h1 class="banner__title">Определение числа по изображению</h1>
+        <img class="banner__image" src="/src/assets/banner2.jpg" alt="" />
+      </div>
+    </section>
+
+    <section class="wrapper">
+      <div class="content">
+        <div class="display_image">
+          <canvas id="draw_digit" class="display_image__canvas"></canvas>
+          <div class="annotation">
+            <p>ЛКМ &#8211; Кисть&#160;&#160;&#160;&#160;ПКМ &#8211; Ластик</p>
+            <p>
+              Исходники:&#160;&#160;<a href="https://github.com/Artemiy111/neural"
+                >Проект на Github</a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="info">
+          <div class="bar_shell">
+            <!-- Dinamic display -->
+          </div>
+          <div class="btn_shell">
+            <input type="file" id="input_img_digit" />
+            <button class="btn" id="clean_digit">Стереть всё</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrapper">
+      <div class="banner">
+        <h1 class="banner__title">Определение буквы по изображению</h1>
+        <img class="banner__image" src="/src/assets/banner3.jpg" alt="" />
+      </div>
+    </section>
+
+    <section class="wrapper">
+      <div class="content">
+        <div class="display_image">
+          <canvas id="draw_letter" class="display_image__canvas"></canvas>
+          <div class="annotation">
+            <p>ЛКМ &#8211; Кисть&#160;&#160;&#160;&#160;ПКМ &#8211; Ластик</p>
+            <p>
+              Исходники:&#160;&#160;<a href="https://github.com/Artemiy111/neural"
+                >Проект на Github</a
+              >
+            </p>
+          </div>
+        </div>
+        <div class="info">
+          <div class="bar_shell">
+            <!-- Dinamic display -->
+          </div>
+          <div class="btn_shell">
+            <input type="file" name="" id="input_img_letter" />
+            <button class="btn" id="clean_letter">Стереть всё</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  <script type="module" src="/src/js/main.js"></script>
+</html>
